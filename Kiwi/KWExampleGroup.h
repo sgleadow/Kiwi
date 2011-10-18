@@ -14,11 +14,14 @@
 #import "KWExampleGroupDelegate.h"
 
 @class KWCallSite;
+@class KWExampleSuite;
 @class KWContextNode;
 @class KWSpec;
 @class KWMatcherFactory;
 
 @interface KWExampleGroup : NSObject <KWExampleNodeVisitor, KWReporting>
+
+@property (nonatomic, assign) KWExampleSuite *suite;
 
 - (id)initWithExampleNode:(id<KWExampleNode>)node contextNodeStack:(NSArray *)stack;
 
