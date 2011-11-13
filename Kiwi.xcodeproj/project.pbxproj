@@ -1386,7 +1386,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = Private;
 				PRODUCT_NAME = Kiwi;
+				PUBLIC_HEADERS_FOLDER_PATH = Kiwi;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1408,7 +1410,9 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = Private;
 				PRODUCT_NAME = Kiwi;
+				PUBLIC_HEADERS_FOLDER_PATH = Kiwi;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				ZERO_LINK = NO;
