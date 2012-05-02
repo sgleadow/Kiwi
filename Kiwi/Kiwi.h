@@ -17,6 +17,7 @@ extern "C" {
 #import "KWAsyncVerifier.h"
 #import "KWBeBetweenMatcher.h"
 #import "KWBeEmptyMatcher.h"
+#import "KWBeNonEmptyMatcher.h"
 #import "KWBeIdenticalToMatcher.h"
 #import "KWBeKindOfClassMatcher.h"
 #import "KWBeMemberOfClassMatcher.h"
