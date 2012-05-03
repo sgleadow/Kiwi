@@ -18,8 +18,7 @@
 @implementation KWRealObjectStubTest
 
 - (void)tearDown {
-    KWClearAllMessageSpies();
-    KWClearAllObjectStubs();
+    KWClearStubsAndSpies();
 }
 
 - (void)testItShouldRaiseWhenStubbingNonExistentMethods {
@@ -45,6 +44,13 @@
     Fighter *fighter = [Fighter fighterWithCallsign:fighterCallsign];
     [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:fighterCallsign];
     STAssertEquals(fighter, [cruiser fighterWithCallsign:fighterCallsign], @"expected method to be stubbed");
+}
+
+- (void)testItShouldStubInstanceMethodsReturningObjectsWithAnyArguments {
+    Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Galactica"];
+    Fighter *fighter = [Fighter fighterWithCallsign:@"Viper 1"];
+    [cruiser stub:@selector(fighterWithCallsign:) andReturn:fighter withArguments:any()];
+    STAssertEquals(fighter, [cruiser fighterWithCallsign:@"Foo"], @"expected method to be stubbed");
 }
 
 - (void)testItShouldClearStubbedRecursiveMethods {
@@ -83,6 +89,16 @@
     Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
     [[cruiser stubAndReturn:callsign] callsign];
     STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
+}
+
+- (void)testItShouldStubTheNextMessagesAndReturnDifferentValues {
+    NSString *callsign = @"Galactica";
+    NSString *secondCallsign = @"Andromeda";
+    Cruiser *cruiser = [Cruiser cruiserWithCallsign:@"Avenger"];
+    [[cruiser stubAndReturn: callsign times:[KWValue valueWithInt:2] afterThatReturn:secondCallsign] callsign];
+    STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
+    STAssertEqualObjects([cruiser callsign], callsign, @"expected method to be stubbed");
+    STAssertEqualObjects([cruiser callsign], secondCallsign, @"expected method to be stubbed and change return value");
 }
 
 - (void)testItShouldPreserveClassResultWhenInstanceMethodStubbed {
